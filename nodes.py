@@ -4,7 +4,6 @@ import numpy as np
 import requests
 
 from util.logger import lg
-from comfy.cli_args import args
 
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
@@ -33,19 +32,23 @@ class SaveImageS3PresignedUrlNordy:
     
     def save_image_s3_presigned_url(self, images, presigned_url, set_metadata=False, prompt=None, extra_pnginfo=None, job_id=None, user_id=None,):
         with lg.context(f"SaveImageS3PresignedUrl job_id:{job_id}, user_id:{user_id}"):
+            
             lg.debug(f"presigned_url:{presigned_url}, set_metadata:{set_metadata}")
             
-            # url은 하나만 업로드할 수 있으므로 첫 번째 이미지만 처리
-            if len(images) == 0:
-                return ("no_images_to_process",)
+            # 첫 번째 이미지만 사용
+            image = images[0]
 
-            image = images[0]  # 첫 번째 이미지만 사용
+            # presigned url이 없으면 처리하지 않음
+            if presigned_url is "" or presigned_url is None:
+                lg.debug("presigned_url is None")
+                return (images, )
 
             try:
                 i = 255. * image.cpu().numpy()
                 img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
                 
-                #TODO 이미지에 메타데이터 추가할것인가, 말것인가.
+                
+                # 메타데이터 추가
                 metadata = None
                 if set_metadata:
                     metadata = PngInfo()
