@@ -3,6 +3,7 @@ import json
 import numpy as np
 import requests
 
+from util.nordy_deduct_credit import nordy_deduct_credit
 from util.logger import lg
 
 from PIL import Image
@@ -39,7 +40,7 @@ class SaveImageS3PresignedUrlNordy:
             image = images[0]
 
             # presigned url이 없으면 처리하지 않음
-            if presigned_url is "" or presigned_url is None:
+            if presigned_url == "" or presigned_url is None:
                 lg.debug("presigned_url is None")
                 return (images, )
 
@@ -85,3 +86,26 @@ class SaveImageS3PresignedUrlNordy:
             except Exception as e:
                 lg.debug(f"Error uploading image: {str(e)}")
                 raise RuntimeError(f"Failed to upload image: {str(e)}")
+            
+@nordy_deduct_credit
+class CreditTesterNordy:
+    CATEGORY = "Nordy"
+    DESCRIPTION = "Credit tester"
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "images": ("IMAGE",),
+                "credit": ("FLOAT",),
+            },
+            "hidden": {
+                "job_id": "JOB_ID",
+                "user_id": "USER_ID",
+            }
+        }
+        
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "credit_tester"
+    
+    def credit_tester(self, images, credit, job_id, user_id):
+        return (images, )
