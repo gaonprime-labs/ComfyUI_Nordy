@@ -151,3 +151,5 @@ def fast_allocate(target_gb=60, chunk_gb=10):
     
     total_allocated = sum(len(b) for b in memory_blocks) / bytes_per_gb
     print(f"\n✅ Total allocated: {total_allocated:.2f}GB")
+    
+    
