@@ -3,8 +3,6 @@ import json
 import torch
 import torch.nn.functional as F
 
-from detail_inject import _gaussian_kernel1d
-
 EPS = 1e-6
 
 def as_list(x):
