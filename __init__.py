@@ -1,5 +1,6 @@
 from .nodes import SaveImageS3PresignedUrlNordy, MemoryTest
 from .tiled_flux_upscale_nodes import TileSplitByFactor, TileMergeByMeta, TileMergeByMetaWOMaskBlending, DetailInjectAfterUpscale
+from .blur_judgment import LaplacianVarianceScore
 
 NODE_CLASS_MAPPINGS = {
     "SaveImageS3PresignedUrlNordy": SaveImageS3PresignedUrlNordy,
@@ -10,6 +11,10 @@ NODE_CLASS_MAPPINGS = {
     "TileMergeByMetaWOMaskBlending": TileMergeByMetaWOMaskBlending,
     "DetailInjectAfterUpscale": DetailInjectAfterUpscale,
     # ============================================
+    
+    # ==========blur_judgment===========
+    "LaplacianVarianceScore": LaplacianVarianceScore,
+    # ================================
 }   
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -21,7 +26,10 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "TileMergeByMetaWOMaskBlending" : "Tile Merge By Meta Without Mask Blending",
     "DetailInjectAfterUpscale": "Detail Inject After Upscale",
     # ============================================
+    
+    # ==========blur_judgment===========
+    "LaplacianVarianceScore": "Laplacian Variance Score",
+    # ================================
 }
-
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]

@@ -1,5 +1,6 @@
 from .utils.split_by_factor import *  
 from .utils.merge_by_meta import *  
+from .utils.inject_detail import *
 
 # 사용자가 지정한 factor에 따른 tile 사이즈과 padding 계산해서 meta에 기록
 class TileSplitByFactor:
