@@ -1,6 +1,6 @@
 from .nodes import SaveImageS3PresignedUrlNordy, MemoryTest
 from .tiled_flux_upscale_nodes import TileSplitByFactor, TileMergeByMeta, TileMergeByMetaWOMaskBlending, DetailInjectAfterUpscale
-from .blur_judgment import LaplacianVarianceScore
+from .image_judgment import LaplacianVarianceScore, TextureDensityMetrics
 
 NODE_CLASS_MAPPINGS = {
     "SaveImageS3PresignedUrlNordy": SaveImageS3PresignedUrlNordy,
@@ -12,8 +12,9 @@ NODE_CLASS_MAPPINGS = {
     "DetailInjectAfterUpscale": DetailInjectAfterUpscale,
     # ============================================
     
-    # ==========blur_judgment===========
+    # ==========image_judgment===========
     "LaplacianVarianceScore": LaplacianVarianceScore,
+    "TextureDensityMetrics": TextureDensityMetrics,
     # ================================
 }   
 
@@ -27,8 +28,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "DetailInjectAfterUpscale": "Detail Inject After Upscale",
     # ============================================
     
-    # ==========blur_judgment===========
+    # ==========image_judgment===========
     "LaplacianVarianceScore": "Laplacian Variance Score",
+    "TextureDensityMetrics": "Texture Density Score",
     # ================================
 }
 
