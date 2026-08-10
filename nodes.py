@@ -3,7 +3,7 @@ import json
 import numpy as np
 import requests
 
-from util.logger import lg
+from nordy_utils.logger import lg
 
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
