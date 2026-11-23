@@ -3,7 +3,22 @@ import json
 import numpy as np
 import requests
 
-from util.logger import lg
+import contextlib
+import logging
+
+
+# 옛 Nordy ComfyUI의 util.logger(lg)는 mini-nordy ComfyUI에 없다. 같은 이름으로 표준 logging에 보낸다.
+class _NordyLogger:
+    _logger = logging.getLogger(__name__)
+
+    def debug(self, message):
+        self._logger.debug(message)
+
+    def context(self, name):
+        return contextlib.nullcontext()
+
+
+lg = _NordyLogger()
 
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
